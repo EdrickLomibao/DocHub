@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocHub", "MidLevelExam\DocHub.csproj", "{6828BB1A-2D74-401B-A0A1-22F4A9773164}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocHub", "DocHub\DocHub.csproj", "{6828BB1A-2D74-401B-A0A1-22F4A9773164}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
