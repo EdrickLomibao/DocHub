@@ -1,0 +1,165 @@
+﻿
+@{
+    ViewBag.Title = "Document";
+}
+
+@section scripts{
+    @Scripts.Render("~/Scripts/app/document-app.js")
+
+    <script type="text/javascript">
+        $(function () {
+            $("#dropSection").filedrop({
+                fallback_id: 'btnUpload',
+                fallback_dropzoneClick: true,
+                url: '@Url.Action("Upload")',
+                allowedfileextensions: ['.doc', '.docx', '.txt'], // Allowed filetypes
+                paramname: 'fileData',
+                maxfiles: 5, //Maximum Number of Files allowed at a time.
+                maxfilesize: 2, //Maximum File Size in MB.
+                dragOver: function () {
+                    $('#dropSection').addClass('active');
+                },
+                dragLeave: function () {
+                    $('#dropSection').removeClass('active');
+                },
+                drop: function () {
+                    $('#dropSection').removeClass('ac   ive');
+                },
+                uploadFinished: function (i, file, response, time) {
+                    $("#SuccessMessage").removeClass("hidden");
+                    $("#SuccessMessage").text('File successfully uploaded.');
+                    $("#ErrorMessage").addClass("hidden");
+
+                },
+                afterAll: function (e) {
+                    //To do some task after all uploads done.
+                }
+            })
+        })
+    </script>
+
+    <script type="text/javascript">
+        var preRow;
+        function selectRow(row) {
+            if (typeof (preRow) != 'undefined') {
+                preRow.bgColor = 'white';
+            }
+            row.bgColor = '#E5E7E9';
+            preRow = row;
+
+        }
+
+    </script>
+
+}
+
+<style type="text/css">
+    body {
+        font-family: Arial;
+        font-size: 10pt;
+    }
+
+    #dropSection {
+    }
+
+    #btnUpload {
+        display: none;
+    }
+
+    .active {
+        background-color: yellow !important;
+    }
+</style>
+
+<h2>Document</h2>
+
+<div ng-app="DocumentApp">
+    <div ng-controller="DocumentCtrl">
+
+        <div id="ErrorMessage" class="alert alert-danger fade in hidden">
+            <strong>Error!</strong> 
+        </div>
+        <div id="SuccessMessage" class="alert alert-success fade in hidden">
+            <strong>Success!</strong>
+        </div>
+
+        <div id="dropSection" style="border-style: dashed; border-width: 3px;
+border-color: gray; margin: 20px 0; padding: 50px 10px; text-align: center;">
+
+            <p style="font-size: 25px;">
+                Please drag and drop files into this panel
+            </p>
+
+        </div>
+
+        <hr />
+
+        <section class="content">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h4 class="box-title">Accounts</h4>
+                        </div>
+                        <div class="box-body">
+                            <div id="UserDataContainer">
+
+                                <input type="hidden" name="UserAccount" ng-model="useraccount" />
+                                <table id="tblUser" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="user in users" ng-click="selectaccount(user)" onclick="selectRow(this)">
+                                            <td>{{ user.Email }}</td>
+
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h4 class="box-title">Documents</h4>
+                        </div>
+                        <div class="box-body">
+                            <div id="DataContainer">
+
+                                <table id="tblDocument" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>FileName</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="doc in documents">
+                                            <td>{{ doc.FileName }}</td>
+                                            <td>
+                                                <input type="submit" id="btnCollaborate" value="Collaborate" class="btn btn-primary" ng-click="collaborate(doc);" />
+                                                <input type="submit" id="btnInvite" value="Invite Collaborator" class="btn btn-primary" ng-click="sendinvitation(doc)" />
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            
+        </section>
+
+    </div>
+</div>

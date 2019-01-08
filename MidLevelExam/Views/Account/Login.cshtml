@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Log in";
+}
+
+@section scripts {
+    @Scripts.Render("~/Scripts/app/login-app.js")
+}
+
+<h2>@ViewBag.Title.</h2>
+<div id="LoginContainer" class="container" ng-app="LoginApp">
+
+    <div class="row">
+
+    </div>
+    <br />
+    <div class="row">
+
+        <div ng-controller="LoginCtrl">
+            <form name="form" novalidate>
+                <div id="ErrorMessage" class="alert alert-danger fade in hidden">
+                    <strong>Error login:</strong> Please check fields.
+                </div>
+
+                <input id="txtUserName" type="text" class="form-control" placeholder="User Name" ng-model="email" /> <br />
+                <input id="txtPassword" type="password" class="form-control" placeholder="Password" ng-model="password" /> <br />
+                <button class="btn btn-primary" ng-click="login()">Login</button>
+                <br />
+                <br />
+                
+            </form>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,46 @@
+﻿@*@model DocHub.Models.RegisterViewModel*@
+@{
+    ViewBag.Title = "Register";
+}
+
+@section scripts {
+    @Scripts.Render("~/Scripts/app/register-app.js")
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<div id="RegisterContainer" class="container" ng-app="RegisterApp">
+
+    <div class="row">
+
+        <div class="col-md-12">
+        </div>
+
+    </div>
+    <br />
+    <div class="row">
+
+        <div ng-controller="RegisterCtrl">
+            <form name="form" novalidate>
+
+                <div id="ErrorMessage" class="alert alert-danger fade in hidden">
+                </div>
+                <div id="SuccessMessage" class="alert alert-success fade in hidden">
+                    <strong>Success!</strong> Your account successfully created.
+                </div>
+                <input id="txtUserName" type="text" class="form-control" placeholder="Email" ng-model="email" /> <br />
+                <input id="txtUserName" type="text" class="form-control" placeholder="First Name" ng-model="firstname" /> <br />
+                <input id="txtUserName" type="text" class="form-control" placeholder="Last Name" ng-model="lastname" /> <br />
+                <input id="txtPassword" type="password" class="form-control" placeholder="Password" ng-model="password" /> <br />
+                <input id="txtConfirmPassword" type="password" class="form-control" placeholder="Confirm Password" ng-model="confirmpassword" /> <br />
+                <button class="btn btn-success" ng-click="register()">Register</button>
+                <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
+                <br />
+                <br />
+                
+            </form>
+        </div>
+
+    </div>
+
+</div>
